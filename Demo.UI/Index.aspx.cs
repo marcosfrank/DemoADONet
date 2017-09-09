@@ -27,6 +27,8 @@ namespace Demo.UI
         protected void Page_Load(object sender, EventArgs e)
         {
             this.txtInit.Text = "Marcos";
+            this.dgvResultados.DataSource = this.BusinessLogic.ExecuteSelect();
+            this.dgvResultados.DataBind();
         }
 
         #endregion Methods
