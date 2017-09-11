@@ -48,9 +48,22 @@ namespace Demo.Data
                 conn.Open();
                 command.Connection = conn;
                 var reader = command.ExecuteReader();
-                ret = Mapper.Map<IDataReader, List<Region>>(reader);
+                ret = ReadDR(reader);
             }
             return ret;
+        }
+
+        private List<Region> ReadDR(SqlDataReader reader)
+        {
+            List<Region> regions = new List<Region>();
+            while (reader.Read())
+            {
+                var reg = new Region();
+                reg.RegionID = (Int32)reader["RegionID"];
+                reg.Description = reader["RegionDescription"].ToString();
+                regions.Add(reg);
+            }
+            return regions;
         }
 
         #endregion Methods

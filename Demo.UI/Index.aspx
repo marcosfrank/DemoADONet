@@ -26,10 +26,6 @@
             <asp:TextBox ID="txtRegionId" runat="server"></asp:TextBox><br />
             <label>Description</label>
             <asp:TextBox ID="txtDescription" runat="server"></asp:TextBox><br />
-            <asp:Button ID="btnNuevo" runat="server" Text="Nuevo" />
-            <asp:Button ID="btnModificar" runat="server" Text="Modificar" />
-            <asp:Button ID="btnAttacharModificar" runat="server" Text="Modificar attach" />
-            <asp:Button ID="btnEliminar" runat="server" Text="Borrar" />
         </div>
     </form>
 </body>
