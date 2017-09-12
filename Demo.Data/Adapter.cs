@@ -24,6 +24,19 @@ namespace Demo.Data
             }
         }
 
+        public void Delete(Int32 regionID)
+        {
+            SqlCommand command = new SqlCommand("DELETE FROM Region WHERE RegionID = @regionID");
+            var paramId = new SqlParameter("@regionID", regionID);
+            command.Parameters.Add(paramId);
+            using (var conn = new SqlConnection(ConnectionString))
+            {
+                command.Connection = conn;
+                conn.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
         public void Update(Region reg)
         {
             SqlCommand command = new SqlCommand("UPDATE Region SET RegionDescription = @regionDescription WHERE RegionID = @regionID");

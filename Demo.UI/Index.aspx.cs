@@ -11,6 +11,12 @@ namespace Demo.UI
 {
     public partial class Index : System.Web.UI.Page
     {
+        #region Fields
+
+        private const string Command_Name = "Select";
+
+        #endregion Fields
+
         #region Properties
 
         private Logic BusinessLogic { get; set; }
@@ -31,11 +37,12 @@ namespace Demo.UI
 
         protected void btnExecuteSelect_Click(object sender, EventArgs e)
         {
+            FillDataGrid();
         }
 
         protected void btnExecuteStoreProcedure_Click(object sender, EventArgs e)
         {
-            //this.BusinessLogic.ExecuteSelect();
+            //this.BusinessLogic.ExecuteSelect();dgvResultados_RowCommand
         }
 
         protected void btnExecuteUpdate_Click(object sender, EventArgs e)
@@ -47,6 +54,16 @@ namespace Demo.UI
             };
             this.BusinessLogic.Update(reg);
             FillDataGrid();
+        }
+
+        protected void dgvResultados_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == Command_Name)
+            {
+                var row = this.dgvResultados.Rows[Convert.ToInt32(e.CommandArgument)];
+                this.txtDescription.Text = row.Cells[1].Text;
+                this.txtRegionId.Text = row.Cells[2].Text;
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -65,5 +82,12 @@ namespace Demo.UI
         }
 
         #endregion Methods
+
+        protected void btnExecuteDelete_Click(object sender, EventArgs e)
+        {
+            int regiondID = Convert.ToInt32(this.txtRegionId.Text);
+            this.BusinessLogic.Delete(regiondID);
+            FillDataGrid();
+        }
     }
 }

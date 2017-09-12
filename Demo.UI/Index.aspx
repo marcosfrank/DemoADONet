@@ -13,16 +13,16 @@
             <asp:Button ID="btnExecuteStoreProcedure" runat="server" Text="ExecuteSP" OnClick="btnExecuteStoreProcedure_Click" />
             <asp:Button ID="btnExecuteUpdate" runat="server" Text="Update" OnClick="btnExecuteUpdate_Click" />
             <asp:Button ID="btnExecuteInsert" runat="server" Text="Insert" OnClick="btnExecuteInsert_Click" />
-            <asp:Button ID="btnExecuteDelete" runat="server" Text="Delete" />
+            <asp:Button ID="btnExecuteDelete" runat="server" Text="Delete" OnClick="btnExecuteDelete_Click" />
         </div>
         <div>
-            <asp:GridView ID="dgvResultados" runat="server">
+            <asp:GridView ID="dgvResultados" runat="server" OnRowCommand="dgvResultados_RowCommand">
                 <Columns>
-                    <asp:CommandField ShowSelectButton="True" />
+                    <asp:CommandField ShowSelectButton="True" HeaderText="Seleccionar" />
                 </Columns>
             </asp:GridView>
             <label>RegionID</label>
-            <asp:TextBox ID="txtRegionId" runat="server"></asp:TextBox><br />
+            <asp:TextBox ID="txtRegionId" runat="server" Enabled="false"></asp:TextBox><br />
             <label>Description</label>
             <asp:TextBox ID="txtDescription" runat="server"></asp:TextBox><br />
         </div>

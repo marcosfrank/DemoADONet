@@ -27,6 +27,11 @@ namespace Demo.Business
 
         #region Methods
 
+        public void Delete(int regiondID)
+        {
+            this.Adapter.Delete(regiondID);
+        }
+
         public IEnumerable<Region> GetAll()
         {
             return this.Adapter.GetAll();
