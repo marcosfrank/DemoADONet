@@ -21,21 +21,25 @@ namespace Demo.Business
 
         #region Properties
 
-        public Adapter Adapter { get; set; }
+        private Adapter Adapter { get; set; }
 
         #endregion Properties
 
         #region Methods
 
-        public IEnumerable<Region> ExecuteSelect()
+        public IEnumerable<Region> GetAll()
         {
             return this.Adapter.GetAll();
         }
 
-        public string ExecuteUpdate()
+        public void Insert(Region reg)
         {
-            string a = "";
-            return a;
+            this.Adapter.Insert(reg);
+        }
+
+        public void Update(Region reg)
+        {
+            this.Adapter.Update(reg);
         }
 
         #endregion Methods

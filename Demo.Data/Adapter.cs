@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Configuration;
 using System;
-using System.Data;
-using AutoMapper;
 
 namespace Demo.Data
 {
@@ -26,6 +24,21 @@ namespace Demo.Data
             }
         }
 
+        public void Update(Region reg)
+        {
+            SqlCommand command = new SqlCommand("UPDATE Region SET RegionDescription = @regionDescription WHERE RegionID = @regionID");
+            var paramId = new SqlParameter("@regionID", reg.RegionID);
+            var paramDescription = new SqlParameter("@regionDescription", reg.Description);
+            command.Parameters.Add(paramId);
+            command.Parameters.Add(paramDescription);
+            using (var conn = new SqlConnection(ConnectionString))
+            {
+                command.Connection = conn;
+                conn.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
         #endregion Properties
 
         #region Constructors
@@ -40,16 +53,45 @@ namespace Demo.Data
 
         public IEnumerable<Region> GetAll()
         {
-            //TODO Corregir esto.
             var ret = new List<Region>();
             SqlCommand command = new SqlCommand("SELECT * FROM Region");
             using (var conn = new SqlConnection(ConnectionString))
             {
-                conn.Open();
                 command.Connection = conn;
+                conn.Open();
                 var reader = command.ExecuteReader();
                 ret = ReadDR(reader);
             }
+            return ret;
+        }
+
+        public void Insert(Region region)
+        {
+            SqlCommand command = new SqlCommand("INSERT INTO Region (RegionID, RegionDescription ) VALUES (@regionID,@regionDescription)");
+            int nextId = GetNextRegionID();
+            var paramId = new SqlParameter("@regionID", nextId);
+            var paramDescription = new SqlParameter("@regionDescription", region.Description);
+            command.Parameters.Add(paramId);
+            command.Parameters.Add(paramDescription);
+            using (var conn = new SqlConnection(ConnectionString))
+            {
+                command.Connection = conn;
+                conn.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
+        private int GetNextRegionID()
+        {
+            int ret = 0;
+            SqlCommand command = new SqlCommand("SELECT MAX(RegionID) from Region");
+            using (var conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                command.Connection = conn;
+                ret = (Int32)command.ExecuteScalar();
+            }
+            ret++;
             return ret;
         }
 
