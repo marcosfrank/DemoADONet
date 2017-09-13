@@ -8,22 +8,24 @@ using Demo.Entities;
 
 namespace Demo.Business
 {
-    public class Logic
+    public class RegionLogic
     {
         #region Constructors
 
-        public Logic()
+        public RegionLogic()
         {
-            this.Adapter = new Adapter();
+            this.Adapter = new RegionAdapter();
         }
 
         #endregion Constructors
 
         #region Properties
 
-        private Adapter Adapter { get; set; }
+        private RegionAdapter Adapter { get; set; }
 
         #endregion Properties
+
+
 
         #region Methods
 

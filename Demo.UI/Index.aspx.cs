@@ -13,13 +13,13 @@ namespace Demo.UI
     {
         #region Fields
 
-        private const string Command_Name = "Select";
+        private const string CommandName = "Select";
 
         #endregion Fields
 
         #region Properties
 
-        private Logic BusinessLogic { get; set; }
+        private RegionLogic BusinessLogic { get; set; }
 
         #endregion Properties
 
@@ -32,17 +32,12 @@ namespace Demo.UI
                 Description = this.txtDescription.Text
             };
             this.BusinessLogic.Insert(reg);
-            FillDataGrid();
+            FillDataGridAndCleanTextBoxs();
         }
 
         protected void btnExecuteSelect_Click(object sender, EventArgs e)
         {
-            FillDataGrid();
-        }
-
-        protected void btnExecuteStoreProcedure_Click(object sender, EventArgs e)
-        {
-            //this.BusinessLogic.ExecuteSelect();dgvResultados_RowCommand
+            FillDataGridAndCleanTextBoxs();
         }
 
         protected void btnExecuteUpdate_Click(object sender, EventArgs e)
@@ -53,12 +48,12 @@ namespace Demo.UI
                 Description = this.txtDescription.Text
             };
             this.BusinessLogic.Update(reg);
-            FillDataGrid();
+            FillDataGridAndCleanTextBoxs();
         }
 
         protected void dgvResultados_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == Command_Name)
+            if (e.CommandName == CommandName)
             {
                 var row = this.dgvResultados.Rows[Convert.ToInt32(e.CommandArgument)];
                 this.txtDescription.Text = row.Cells[1].Text;
@@ -66,13 +61,10 @@ namespace Demo.UI
             }
         }
 
-        protected void Page_Load(object sender, EventArgs e)
+        private void CleanTextBoxs()
         {
-            this.BusinessLogic = new Logic();
-            if (!Page.IsPostBack)
-            {
-                FillDataGrid();
-            }
+            this.txtDescription.Text = string.Empty;
+            this.txtRegionId.Text = string.Empty;
         }
 
         private void FillDataGrid()
@@ -81,13 +73,28 @@ namespace Demo.UI
             this.dgvResultados.DataBind();
         }
 
+        private void FillDataGridAndCleanTextBoxs()
+        {
+            this.CleanTextBoxs();
+            this.FillDataGrid();
+        }
+
         #endregion Methods
 
         protected void btnExecuteDelete_Click(object sender, EventArgs e)
         {
             int regiondID = Convert.ToInt32(this.txtRegionId.Text);
             this.BusinessLogic.Delete(regiondID);
-            FillDataGrid();
+            FillDataGridAndCleanTextBoxs();
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            this.BusinessLogic = new RegionLogic();
+            if (!Page.IsPostBack)
+            {
+                FillDataGridAndCleanTextBoxs();
+            }
         }
     }
 }
