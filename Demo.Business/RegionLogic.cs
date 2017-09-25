@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Demo.Data;
+﻿using Demo.Data;
 using Demo.Entities;
+using System.Collections.Generic;
 
 namespace Demo.Business
 {
@@ -24,8 +20,6 @@ namespace Demo.Business
         private RegionAdapter Adapter { get; set; }
 
         #endregion Properties
-
-
 
         #region Methods
 

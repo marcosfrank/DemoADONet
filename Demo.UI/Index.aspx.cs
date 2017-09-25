@@ -75,6 +75,7 @@ namespace Demo.UI
 
         private void FillDataGridAndCleanTextBoxs()
         {
+            this.lblError.Text = String.Empty;
             this.CleanTextBoxs();
             this.FillDataGrid();
         }
@@ -83,9 +84,17 @@ namespace Demo.UI
 
         protected void btnExecuteDelete_Click(object sender, EventArgs e)
         {
-            int regiondID = Convert.ToInt32(this.txtRegionId.Text);
-            this.BusinessLogic.Delete(regiondID);
-            FillDataGridAndCleanTextBoxs();
+            try
+            {
+                FillDataGridAndCleanTextBoxs();
+                int regiondID = Convert.ToInt32(this.txtRegionId.Text);
+                this.BusinessLogic.Delete(regiondID);
+            }
+            catch 
+            {
+                this.lblError.Text = "No se puede eliminar dicha region ya que tiene Territorios asociados.";
+            }
+            
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -95,6 +104,11 @@ namespace Demo.UI
             {
                 FillDataGridAndCleanTextBoxs();
             }
+        }
+
+        protected void btnClean_Click(object sender, EventArgs e)
+        {
+            FillDataGridAndCleanTextBoxs();
         }
     }
 }

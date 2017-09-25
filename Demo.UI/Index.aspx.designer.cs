@@ -58,6 +58,15 @@ namespace Demo.UI {
         protected global::System.Web.UI.WebControls.Button btnExecuteDelete;
         
         /// <summary>
+        /// btnClean control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnClean;
+        
+        /// <summary>
         /// dgvResultados control.
         /// </summary>
         /// <remarks>
@@ -83,5 +92,14 @@ namespace Demo.UI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDescription;
+        
+        /// <summary>
+        /// lblError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblError;
     }
 }

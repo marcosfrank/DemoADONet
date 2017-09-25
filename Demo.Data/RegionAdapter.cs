@@ -1,8 +1,7 @@
 ﻿using Demo.Entities;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Configuration;
-using System;
 
 namespace Demo.Data
 {

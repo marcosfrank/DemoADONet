@@ -13,6 +13,7 @@
             <asp:Button ID="btnExecuteUpdate" runat="server" Text="Update" OnClick="btnExecuteUpdate_Click" />
             <asp:Button ID="btnExecuteInsert" runat="server" Text="Insert" OnClick="btnExecuteInsert_Click" />
             <asp:Button ID="btnExecuteDelete" runat="server" Text="Delete" OnClick="btnExecuteDelete_Click" />
+            <asp:Button ID="btnClean" runat="server" Text="Limpiar" OnClick="btnClean_Click" />
             <a href="StoreProcedure.aspx">Store Procedures</a>
         </div>
         <br />
@@ -26,6 +27,9 @@
             <asp:TextBox ID="txtRegionId" runat="server" Enabled="false"></asp:TextBox><br />
             <label>Description</label>
             <asp:TextBox ID="txtDescription" runat="server"></asp:TextBox><br />
+        </div>
+        <div>
+            <asp:Label ID="lblError" ForeColor="Red" Text="" runat="server" />
         </div>
     </form>
 </body>
