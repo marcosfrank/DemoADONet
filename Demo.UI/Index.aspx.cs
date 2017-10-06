@@ -86,9 +86,9 @@ namespace Demo.UI
         {
             try
             {
-                FillDataGridAndCleanTextBoxs();
                 int regiondID = Convert.ToInt32(this.txtRegionId.Text);
                 this.BusinessLogic.Delete(regiondID);
+                FillDataGridAndCleanTextBoxs();
             }
             catch 
             {
